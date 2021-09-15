@@ -1,0 +1,12 @@
+global-styling:
+
+ css:
+  theme:
+   css/mytheme.css: {}
+   https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css: { type: external , minified: true }
+
+ js:
+  js/mytheme.js: {}
+ dependencies:
+  - core/jquery
+  - core/jquery.once
