@@ -1,0 +1,3 @@
+{% macro mythememacro(name, value) %}
+<div class={{ name|default('mythemeclassmacro')}} > {{ value|default('This text from Macro')|upper }} </div>
+{% endmacro %}

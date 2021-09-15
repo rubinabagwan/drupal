@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+
+function mytheme_preprocess_html(&$variables) {
+    $variables['attributes']['class'][] = 'newdemo-class';
+
+    /*if(!empty($variables['page']['content'])) {
+        $variables['attributes']['class'] = 'newdemo-content-class';
+    }*/
+}
+
+function mytheme_preprocess_page(&$variables) {
+    $variables['#attached']['library'][] = 'mytheme/global-page-styling';
+    $variables['global_var'] = 'This is global variable';
+}
+
+function mytheme_preprocess_node(&$variables) {
+    if ($variables['content'] ) {
+        // unset($variables['content']);
+    }
+
+
+    $nid = $variables['node']->id();
+
+    if ($nid == 1){
+      // $variables['#attached']['library'][] = 'mytheme/global-content-styling'; 
+    }
+
+    $node = $variables['node'];
+    if ($node->getType() == 'article') {
+     $variables['#attached']['library'][] = 'mytheme/global-content-styling'; 
+  }
+}
+
+function mytheme_preprocess_block(&$variables) {
+  // kint($variables);
+    if ($variables['plugin_id'] == 'block_content:58d91a15-4830-4920-9a86-586a84b8b491') {
+        $variables['attributes']['class'][] = 'mythemesearchblock';
+    }
+}
+
+function mytheme_preprocess_menu(&$variables) {
+    $variables['attributes']['class'][] = 'newdemo-menu-class';
+}
+
+function mytheme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+    if ($variables['element']['#form_id'] == 'search_block_form') {
+        $suggestions[] = 'form_mythemesearch_block_form';
+    }
+}
+
+function mytheme_preprocess_views_view(&$variables) {
+    $view = $variables['view'];
+    $id = $view->storage->id();
+    $variables['title'] = 'My Theme Title';
+}
+
+function mytheme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    if($form_id == 'search_block_form') {
+        $form['keys']['#title'] = t('My Theme search');
+    }
+}
+

@@ -1,0 +1,18 @@
+.page-header {
+    color: rgb(19, 18, 18);
+    font-family: 'Brush Script MT', cursive;
+    font-size: 80px;
+}
+
+.content{
+text-align: center;
+color: black;
+}
+
+.img-responsive{
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    margin-left: 35%;
+    margin-right: 35%;
+}
